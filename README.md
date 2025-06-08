@@ -14,7 +14,7 @@ Justification: Conservative rate prevents overwriting useful features.
 
 Regularization:
 Data Augmentation: Horizontal flips, ±10% rotation/zoom/translation, Gaussian noise
-Suggestion: For 28x28 images (MNIST-like?), 
+
 
 Dropout: 0.2 
 A moderate rate that:
