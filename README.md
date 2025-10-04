@@ -39,47 +39,5 @@ This project fine-tunes a ResNet-50 model to detect pneumonia using chest X-ray 
 
 ---
 
-## 📦 Setup
 
-Make sure you have Python 3.7+ and install the required libraries:
-
-```bash
-pip install -r requirements.txt
-pip install tensorflow numpy matplotlib kagglehub
-import kagglehub
-path = kagglehub.dataset_download("rijulshr/pneumoniamnist")
-import numpy as np
-dataset = np.load("pneumoniamnist.npz")
-xtrain, ytrain = dataset["train_images"], dataset["train_labels"]
-xvalid, yvalid = dataset["val_images"], dataset["val_labels"]
-xtest, ytest = dataset["test_images"], dataset["test_labels"]
-xtrain = xtrain[..., None] / 255.0
-xvalid = xvalid[..., None] / 255.0
-xtest = xtest[..., None] / 255.0
-history = model.fit(
-    xtrain, ytrain,
-    validation_data=(xvalid, yvalid),
-    epochs=1000,
-    callbacks=[checkpoint, restore_best_weights],
-    verbose=1
-)
-for layer in base_model.layers[-20:]:
-    if not isinstance(layer, tf.keras.layers.BatchNormalization):
-        layer.trainable = True
-
-model.compile(
-    optimizer=tf.keras.optimizers.Adam(learning_rate=1e-5),
-    loss=binary_focal_loss(gamma=2.0, alpha=0.25),
-    metrics=[BalancedAccuracy(), tf.keras.metrics.AUC(), F1Score()]
-)
-
-fine_tune_history = model.fit(
-    xtrain, ytrain,
-    validation_data=(xvalid, yvalid),
-    epochs=30,
-    callbacks=[checkpoint, restore_best_weights],
-    verbose=1
-)
-model.load_weights('/kaggle/working/best_model.weights.h5')
-model.evaluate(xtest, ytest)
 
