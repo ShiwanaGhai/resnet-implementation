@@ -33,9 +33,10 @@ Focal Loss: gamma=2.0, alpha=0.25
 Justification: Good for class imbalance. 
 Custom Metrics: Balanced Accuracy + F1 Score
 Justification: Essential for imbalanced data. 
-#  Pneumonia Detection with ResNet-50 & Focal Loss
+#  Pneumonia Detection with ResNet-50.
 
-This project fine-tunes a ResNet-50 model to detect pneumonia using chest X-ray images from the PneumoniaMNIST dataset. It includes data augmentation, custom loss (Focal Loss), and evaluation using custom metrics (Balanced Accuracy, F1 Score, AUC).
+This project fine-tunes a ResNet-50 model to detect pneumonia using chest X-ray images from the PneumoniaMNIST dataset.
+It includes data augmentation, custom loss (Focal Loss), and evaluation using custom metrics (Balanced Accuracy, F1 Score, AUC).
 
 ---
 
